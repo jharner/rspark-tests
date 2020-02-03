@@ -10,8 +10,10 @@ sparkR.session(master = "local")
 #                sparkConfig = list(spark.driver.memory = '2g'),
 #                sparkJars = "/opt/postgresql-42.2.2.jar")
 
-faithful_sdf <- as.DataFrame(faithful)
+url <- sparkR.uiWebUrl()
+url
 
+faithful_sdf <- as.DataFrame(faithful)
 head(faithful_sdf)
 
 meas_sdf <- read.jdbc("jdbc:postgresql://postgres/dataexpo?user=rstudio",
