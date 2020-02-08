@@ -9,15 +9,10 @@ library(sparklyr)
 library(dplyr)
 
 # start the sparklyr session
-master <- "local"
-# master <- "spark://master:7077"
-sc <- spark_connect(master, spark_home = Sys.getenv("SPARK_HOME"),
-                    method = c("shell"), app_name = "sparklyr",
-                    version = NULL, hadoop_version = NULL,
-                    config = spark_config(),
-                    extensions = sparklyr::registered_extensions())
+sc <- spark_connect(master = "local")
+# sc <- spark_connect(master = "spark://master:7077")
 
-faithful_tbl <- copy_to(sc, faithful, "faithful")
+faithful_tbl <- copy_to(sc, faithful, "faithful_sdf", overwrite = TRUE)
 src_tbls(sc)
 
 # stop the SparkR session
