@@ -1,7 +1,7 @@
 library(RPostgreSQL)
 
 drv <- dbDriver("PostgreSQL")
-con <- dbConnect(drv, host="postgres", dbname='dataexpo')
+con <- dbConnect(drv, host="rpsql", dbname='dataexpo')
 dbListConnections(drv)
 
 dbListTables(con)
