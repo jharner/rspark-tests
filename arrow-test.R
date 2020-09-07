@@ -1,13 +1,13 @@
 
-## FROM test on container
+# FROM test on container
 library(sparklyr)
 library(dplyr)
 sc <- spark_connect(master = "spark://master:7077")
 # sc <- spark_connect(master = "local")
-###, config = list("sparklyr.shell.driver-memory" = "6g"))
+#, config = list("sparklyr.shell.driver-memory" = "6g"))
 data <- data.frame(y = runif(10^5, 0, 1))
 
-## Benchmark Data copy_to()
+# Benchmark Data copy_to()
 microbenchmark::microbenchmark(
   setup = library(arrow),
   arrow_on = {
@@ -40,7 +40,7 @@ microbenchmark::microbenchmark(
   times = 10
 ) %T>% print() %>% ggplot2::autoplot()
 
-## Benchmark data transformation
+# Benchmark data transformation
 microbenchmark::microbenchmark(
   setup = library(arrow),
   arrow_on = {
