@@ -9,8 +9,10 @@ library(sparklyr)
 library(dplyr)
 
 # start the sparklyr session
-sc <- spark_connect(master = "local")
-# sc <- spark_connect(master = "spark://master:7077")
+master <- "local"
+# master <- "spark://master:7077"
+# master <- "yarn"
+sc <- spark_connect(master = master)
 
 faithful_tbl <- copy_to(sc, faithful, "faithful_sdf", overwrite = TRUE)
 src_tbls(sc)

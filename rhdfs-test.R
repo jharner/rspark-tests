@@ -1,6 +1,7 @@
 options(warn=-1)
 
 Sys.getenv(c("HADOOP_HOME", "HADOOP_CMD"))
+setwd("/home/rstudio/rspark-tests")
 
 # load rhdfs library and initialize rhdfs
 library(rhdfs)

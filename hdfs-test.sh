@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ~/rspark-tests
+
 # make a directory and copy a file from the local filesystem to hdfs
 hdfs dfs -mkdir temp
 hdfs dfs -ls

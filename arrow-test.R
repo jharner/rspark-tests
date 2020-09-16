@@ -1,10 +1,15 @@
+# Arrow test
 
-# FROM test on container
 library(sparklyr)
 library(dplyr)
-sc <- spark_connect(master = "spark://master:7077")
-# sc <- spark_connect(master = "local")
-#, config = list("sparklyr.shell.driver-memory" = "6g"))
+library(microbenchmark)
+
+# start the sparklyr session
+master <- "local"
+# master <- "spark://master:7077"
+# master <- "yarn"
+sc <- spark_connect(master = master, config = list("sparklyr.shell.driver-memory" = "6g"))
+
 data <- data.frame(y = runif(10^5, 0, 1))
 
 # Benchmark Data copy_to()
@@ -21,11 +26,6 @@ microbenchmark::microbenchmark(
   },
   times = 10
 ) %T>% print() %>% ggplot2::autoplot()
-
-# spark_disconnect(sc)
-
-
-# sc <- spark_connect(master = "spark://master:7077")
 
 # Benchmark collect()
 microbenchmark::microbenchmark(
@@ -53,4 +53,5 @@ microbenchmark::microbenchmark(
   times = 10
 ) %T>% print() %>% ggplot2::autoplot()
 
+# stop the SparkR session
 spark_disconnect(sc)
